@@ -10,6 +10,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -20,7 +21,6 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    String generatedPassword = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,12 +79,20 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                     Random random = new Random();
+                    String generatedPassword = "";
 
-                    for (int i = 0; i < finalPasswordLength - 1; i++) {
-                        generatedPassword += possibleChars.charAt(random.nextInt());
+                    for (int i = 0; i < finalPasswordLength; i++) {
+                        generatedPassword += possibleChars.charAt(random.nextInt(finalPasswordLength));
                     }
-                    Toast.makeText(MainActivity.this, generatedPassword, Toast.LENGTH_LONG);
 
+
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setMessage(generatedPassword);
+
+                    // Create and show the AlertDialog
+                    final AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
 
             }
             }
