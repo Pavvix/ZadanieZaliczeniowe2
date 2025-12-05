@@ -2,6 +2,7 @@ package com.example.zadaniezaliczeniowe;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -18,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+
+    String generatedPassword = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
         Button confirmBtn = findViewById(R.id.confirmBtn);
 
         Spinner dropdownMenu = findViewById(R.id.dropdownMenu);
-
-        String generatedPassword = "";
 
         String lowerCaseChars = "abcdefghijklmnopqrstuvwxyz";
         String upperCaseChars = lowerCaseChars.toUpperCase();
@@ -79,15 +80,28 @@ public class MainActivity extends AppCompatActivity {
 
                     Random random = new Random();
 
-                    for (int i = 0; i < finalPasswordLength; i++) {
-
+                    for (int i = 0; i < finalPasswordLength - 1; i++) {
+                        generatedPassword += possibleChars.charAt(random.nextInt());
                     }
+                    Toast.makeText(MainActivity.this, generatedPassword, Toast.LENGTH_LONG);
 
 
             }
             }
         });
 
+        ArrayList<String> spinnerArray = new ArrayList<>();
+        spinnerArray.add("Kierownik");
+        spinnerArray.add("Starszy programista");
+        spinnerArray.add("Młodszy programista");
+        spinnerArray.add("Tester");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, spinnerArray);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Spinner sItems = (Spinner) findViewById(R.id.dropdownMenu);
+        sItems.setAdapter(adapter);
 
     }
 }
