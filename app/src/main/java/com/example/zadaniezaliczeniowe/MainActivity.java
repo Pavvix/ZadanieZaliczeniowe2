@@ -59,13 +59,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String passwordLength = characterAmount.getText().toString();
-                int finalPasswordLength = Integer.parseInt(passwordLength);
 
-                if(finalPasswordLength == 0){
-                    Toast.makeText(MainActivity.this, "Wybierz dlugość hasła!", Toast.LENGTH_SHORT);
+
+                if(passwordLength.isEmpty()){
+                    Toast.makeText(MainActivity.this, "Wpisz długość hasła!", Toast.LENGTH_SHORT).show();
                 }
                 else{
 
+                    int finalPasswordLength = Integer.parseInt(passwordLength);
                 String possibleChars = lowerCaseChars;
 
                 if(check1.isChecked()){
