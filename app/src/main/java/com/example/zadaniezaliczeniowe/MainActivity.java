@@ -53,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
         String numbers = "1234567890";
         String specialChars = "!@#$%^&*()_+-=.";
 
+        final String[] finalPassword = {""};
+
+
 //        GENEROWANIE HASLA
 
         generateBtn.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                         generatedPassword += possibleChars.charAt(random.nextInt(possibleChars.length()));
                     }
 
-
+                    finalPassword[0] = generatedPassword;
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                     builder.setMessage(generatedPassword);
@@ -95,7 +98,33 @@ public class MainActivity extends AppCompatActivity {
                     final AlertDialog alertDialog = builder.create();
                     alertDialog.show();
 
+
+
             }
+            }
+        });
+
+        // ZATWIERDZ CZYLI POKAZYWANIE INFO
+
+        confirmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                if((firstName.getText().toString().isEmpty()) || (lastName.getText().toString().isEmpty()) || (finalPassword[0].isEmpty())){
+                    Toast.makeText(MainActivity.this, "Uzupełnij wszystkie dane!", Toast.LENGTH_SHORT).show();
+                }else {
+
+                    String message = "Imię: " + firstName.getText().toString() + "\nNazwisko: " + lastName.getText().toString() + "\nStanowisko: " + dropdownMenu.getSelectedItem().toString() + "\nHasło: " + finalPassword[0];
+
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setMessage(message);
+
+                    // Create and show the AlertDialog
+                    final AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
             }
         });
 
