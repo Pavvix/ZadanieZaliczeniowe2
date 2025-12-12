@@ -69,20 +69,20 @@ public class MainActivity extends AppCompatActivity {
                 String possibleChars = lowerCaseChars;
 
                 if(check1.isChecked()){
-                    possibleChars += upperCaseChars;
+                    possibleChars = possibleChars + upperCaseChars;
                 }
                 if(check2.isChecked()){
-                    possibleChars += numbers;
+                    possibleChars = possibleChars + numbers;
                 }
                 if(check3.isChecked()){
-                    possibleChars += specialChars;
+                    possibleChars = possibleChars + specialChars;
                 }
 
                     Random random = new Random();
                     String generatedPassword = "";
 
                     for (int i = 0; i < finalPasswordLength; i++) {
-                        generatedPassword += possibleChars.charAt(random.nextInt(finalPasswordLength));
+                        generatedPassword += possibleChars.charAt(random.nextInt(possibleChars.length()));
                     }
 
 
