@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                     finalPassword[0] = generatedPassword;
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setTitle("Wygenerowane hasło");
                     builder.setMessage(generatedPassword);
 
                     // Create and show the AlertDialog
@@ -119,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setTitle("Dane pracownika");
                     builder.setMessage(message);
 
                     // Create and show the AlertDialog
